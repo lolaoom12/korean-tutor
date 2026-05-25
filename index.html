@@ -2361,6 +2361,255 @@ button { font-family: inherit; cursor: pointer; }
   color: #b86b3a;
   animation: bounce 1s ease-in-out infinite;
 }
+/* ============================================================================
+   RESPONSIVE LAYOUT — Tablet + Desktop scaling
+   ============================================================================ */
+
+/* === TABLET — 768px to 1199px (iPad portrait/landscape, small laptops) === */
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 110px; /* keep bottom tabs */
+  }
+
+  /* Wider header and page padding */
+  .header {
+    padding: 18px 32px 16px;
+  }
+  .page {
+    padding: 28px 32px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Greeting bigger */
+  .greeting-ko {
+    font-size: 34px;
+  }
+  .greeting-th {
+    font-size: 15px;
+  }
+
+  /* Stats grid 4 columns */
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  /* Action grid 3 columns */
+  .action-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .action-card.featured {
+    grid-column: 1 / -1;
+  }
+
+  /* Grammar/vocab/patterns 2 columns */
+  #grammar-list, #vocab-list, #patterns-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  #grammar-list .entry-item,
+  #vocab-list .entry-item,
+  #patterns-list .pattern-card {
+    margin-bottom: 0;
+  }
+  .scope-banner, .empty-state {
+    grid-column: 1 / -1;
+  }
+
+  /* Quiz modes 3 columns */
+  .quiz-modes-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  /* Drill levels 2x2 (already 2 cols on mobile, just spacing) */
+  .drill-level-select {
+    gap: 14px;
+  }
+
+  /* Modal wider on tablet */
+  .modal {
+    max-width: 560px !important;
+    padding: 32px 28px;
+  }
+
+  /* Flashcard slightly larger */
+  .flashcard {
+    min-height: 340px;
+    padding: 36px 28px;
+  }
+  .flashcard-front {
+    font-size: 42px;
+  }
+
+  /* Bottom tabs - more padding so it doesn't feel cramped */
+  .tabs {
+    padding: 0 60px;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .tab {
+    padding: 14px 4px 16px;
+    font-size: 11px;
+  }
+  .tab-icon {
+    font-size: 24px;
+  }
+
+  /* FAB further from edge */
+  .fab {
+    bottom: 120px;
+    right: 28px;
+  }
+
+  /* Exam countdown bigger */
+  .exam-days {
+    font-size: 48px;
+  }
+  .exam-days .num {
+    font-size: 64px;
+  }
+}
+
+/* === DESKTOP — 1200px+ === sidebar layout */
+@media (min-width: 1200px) {
+  body {
+    padding-bottom: 0;
+    padding-left: 240px;
+  }
+
+  /* Bottom tabs → vertical sidebar */
+  .tabs {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: 240px;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
+    align-content: flex-start;
+    padding: 100px 16px 24px;
+    border-top: none;
+    border-right: 2px solid var(--pink-soft);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 4px 0 16px rgba(255, 143, 165, 0.1);
+    gap: 6px;
+  }
+  .tab {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 14px 20px;
+    gap: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 14px;
+    transition: all 0.2s ease;
+  }
+  .tab:hover {
+    background: var(--bg-3);
+    transform: translateX(4px);
+  }
+  .tab-icon {
+    font-size: 28px;
+  }
+  .tab.active {
+    background: linear-gradient(135deg, var(--pink-soft), var(--lavender));
+    color: var(--pink-deep);
+  }
+  .tab.active::before {
+    display: none;
+  }
+  .tab.active .tab-icon {
+    background: none;
+    -webkit-text-fill-color: initial;
+    color: var(--pink-deep);
+  }
+
+  /* Header docked above main content */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 240px;
+    right: 0;
+    z-index: 150;
+    padding: 18px 40px 16px;
+  }
+
+  /* Pages with top room for fixed header */
+  .page {
+    padding: 130px 40px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* HOME: 2-column with mission map floated right */
+  #page-home.active {
+    display: block;
+    position: relative;
+  }
+  #page-home .mission-map {
+    float: right;
+    width: 42%;
+    margin-left: 28px;
+    margin-bottom: 24px;
+    position: sticky;
+    top: 130px;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+  #page-home .mission-map::-webkit-scrollbar {
+    width: 6px;
+  }
+  #page-home .mission-map::-webkit-scrollbar-thumb {
+    background: var(--pink-soft);
+    border-radius: 100px;
+  }
+
+  /* Bigger flashcards */
+  .flashcard {
+    min-height: 400px;
+    padding: 48px 36px;
+  }
+  .flashcard-front {
+    font-size: 52px;
+  }
+
+  /* Modal even wider on desktop */
+  .modal {
+    max-width: 640px !important;
+  }
+
+  /* FAB position */
+  .fab {
+    bottom: 40px;
+    right: 40px;
+  }
+
+  /* Floating decoration emojis - shift to avoid sidebar */
+  body::before {
+    left: 260px;
+    top: 100px;
+  }
+
+  /* Watermark */
+  .watermark {
+    right: 80px;
+    bottom: 60px;
+    font-size: 280px;
+  }
+}
+
+/* === ULTRA-WIDE — 1600px+ === */
+@media (min-width: 1600px) {
+  #grammar-list, #vocab-list, #patterns-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 </style>
 </head>
 <body>
